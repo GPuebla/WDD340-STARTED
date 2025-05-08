@@ -25,7 +25,6 @@ app.use(static)
 
 // Index route 
 app.get("/", function (req, res){ 
-  console.log('Renderizando index')
   res.render("index", {title: "Home"}) 
 })
 
