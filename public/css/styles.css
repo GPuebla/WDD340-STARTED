@@ -4,3 +4,370 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color: #3498db;
+  --background-color: #ecf0f1;
+  --text-color: #2c3e50;
+  --header-background: #333;
+
+  --font-1: 'Roboto', sans-serif;
+  --font-2: 'Trebuchet MS', sans-serif;
+
+  --test-border: solid red 2px;
+}
+
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+.siteName a {
+  font-family: var(--font-1);
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.siteName {
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.siteName a {
+  font-size: 2em;
+}
+
+#tools a {
+  color: var(--header-background);
+  font-family: var(--font-1);
+}
+
+body {
+  min-width: 375px;
+  padding: 0;
+  margin: 0;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+#top-header a {
+  text-decoration: none;
+}
+
+.nav-menu {
+  color: var(--background-color);
+  background-color: var(--header-background);
+}
+
+.nav-menu ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu ul li {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.nav-menu ul li,
+a {
+  list-style: none;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.main-container {
+  background-color: #ffffff;
+  max-width: 600px;
+  margin: 0;
+}
+
+.hero-section {
+  position: relative;
+  margin-left: .3rem;
+}
+
+.hero-section h1 {
+  font-size: 1.2em;
+}
+
+.hero-section img {
+  margin-left: 10%;
+  width: 90%;
+  object-fit: scale-down;
+}
+
+.hero-section #span-text {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 135px;
+  height: 112px;
+  z-index: 20;
+}
+
+.hero-section #span-text h3 {
+  position: relative;
+  margin: 0;
+  color: var(--primary-color);
+  z-index: 10;
+}
+
+.hero-section #span-text ul {
+  padding: 0;
+  margin: 0;
+  color: var(--primary-color);
+  z-index: 10;
+}
+
+.hero-section #span-text ul li {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  margin-top: .2rem;
+  font-family: var(--font-1);
+  font-weight: 500;
+  z-index: 10;
+}
+
+.hero-section #span-text button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: .3rem .2rem;
+  margin-top: .3rem;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+#overlay {
+  position: absolute;
+  background-color: var(--background-color);
+  opacity: .5;
+  top: 40px;
+  left: 20px;
+  width: 135px;
+  height: 125px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.main-section {
+  width: 100%;
+  margin-left: .3rem;
+  display: grid;
+}
+
+.main-section section {
+  margin: 0;
+  padding: 0;
+  max-width: 370px;
+}
+
+.main-section h3 {
+  margin: .5rem 0;
+}
+
+.main-section section ul {
+  padding: .5rem 1rem;
+  margin: 0;
+}
+
+.main-section section ul li {
+  margin-bottom: 1.4rem;
+}
+
+.main-section section .upgrade-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.main-section section .upgrade-container .upgrade-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: .6rem .4rem;
+}
+
+.main-section section .upgrade-container .upgrade-card div {
+  background-color: var(--primary-color);
+  border: solid 1px var(--header-background);
+  max-width: 170px;
+  min-width: 120px;
+  height: 80px;
+  margin: 0 auto;
+  padding: .5rem 0;
+}
+
+footer {
+  margin-left: .3rem;
+}
+
+
+#inv-display {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 0;
+}
+
+#inv-display li {
+  width: 300px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: black
+}
+
+#inv-display li div a {
+  text-align: center;
+  font-size: .5em;
+}
+
+#inv-display li img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#inv-display .namePrice {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#inv-display .namePrice h2 {
+  margin: 0;
+  margin-bottom: .5rem;
+}
+
+#inv-display .namePrice span {
+  color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    background-image: url("/images/site/small_check.jpg");
+    background-size: cover;
+  }
+
+  .siteName {
+    cursor: pointer;
+  }
+
+  .nav-menu ul li {
+    cursor: pointer;
+  }
+
+  .nav-menu ul li:hover {
+    background-color: var(--primary-color);
+    color: var(--header-background);
+  }
+
+  p,
+  li,
+  a {
+    font-size: 1.2em;
+  }
+
+  .main-container {
+    max-width: 900px;
+    margin: .4rem auto;
+    border: solid var(--primary-color) 10px;
+    border-radius: 5px;
+    padding: 1rem 1rem;
+  }
+
+  .main-container h1 {
+    font-size: 2.3em;
+  }
+
+  .hero-section #span-text {
+    top: 20%;
+    left: 10%;
+    width: 25%;
+    height: 40%;
+  }
+
+  .hero-section #span-text h3 {
+    font-size: 1.8em;
+  }
+
+  .hero-section #span-text ul li {
+    font-size: 1.5em;
+  }
+
+  .hero-section #span-text button {
+    font-size: 1.5em;
+  }
+
+  #overlay {
+    top: 20%;
+    left: 10%;
+    width: 25%;
+    height: 40%;
+    z-index: 10;
+  }
+
+  .main-section {
+    min-width: 440px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 270px;
+  }
+
+  .main-section section {}
+
+  .main-section #reviews {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .main-section #upgrades {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #inv-display {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #inv-display li {
+    width: 200px;
+    margin: 1rem 1.5rem;
+  }
+
+  #inv-display li a {
+    text-align: center;
+    font-size: .7em;
+  }
+
+  #inv-display li img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
