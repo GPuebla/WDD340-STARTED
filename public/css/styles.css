@@ -70,11 +70,13 @@ nav {
 }
 
 nav ul {
+  display: none;
+  flex-direction: column;
+  background-color: var(--header-background);
+}
+
+nav ul.show {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  text-align: center;
   margin: 0;
   padding: 0;
 }
@@ -82,6 +84,7 @@ nav ul {
 nav ul li {
   width: 100%;
   padding: 10px 0;
+  text-align: center;
 }
 
 nav ul li,
@@ -298,8 +301,19 @@ footer {
 
   nav ul {
     display: flex !important;
-    /* visible siempre en desktop */
-    flex-direction: row;
+    flex-direction: row !important;
+    justify-content: space-around;
+    background-color: var(--header-background);
+  }
+
+  #nav-list {
+    display: none;
+    flex-direction: column;
+    background-color: var(--header-background);
+  }
+
+  #nav-list.show {
+    display: flex;
   }
 
   .menu-toggle {
@@ -309,7 +323,7 @@ footer {
   p,
   li,
   a {
-    font-size: 1.2em;
+    font-size: 1.8em !important;
   }
 
   .main-container {
@@ -391,6 +405,5 @@ footer {
     object-fit: cover;
     border-radius: 5px;
   }
-
 
 }
