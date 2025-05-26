@@ -15,7 +15,7 @@ Util.getNav = async function (req, res, next) {
       row.classification_id +
       '" title="See our inventory of ' +
       row.classification_name +
-      ' vehicles">' +
+      ' vehicleDatas">' +
       row.classification_name +
       "</a>"
     list += "</li>"
@@ -34,7 +34,7 @@ Util.buildClassificationGrid = async function(data){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
       grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+      grid +=  '<a href="/inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
       + 'details"><img src="' + vehicle.inv_thumbnail 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
@@ -42,7 +42,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<div class="namePrice">'
       grid += '<hr />'
       grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+      grid += '<a href="/inv/detail/' + vehicle.inv_id +'" title="View ' 
       + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
       + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
       grid += '</h2>'
@@ -57,6 +57,34 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* **************************************
+* Build the Inventory Details view HTML
+* ************************************ */
+Util.buildInventoryDetailGrid = async function(vehicleData){
+  let detail = ""
+
+
+  if (vehicleData) {
+    detail += '<ul id="inv-display">'
+    detail += '<li>'
+    detail += '<img src="' + vehicleData.inv_image + '" alt="Image of ' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '" />'
+    detail += '<h2>' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '</h2>'
+    detail += '<p><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(vehicleData.inv_price) + '</p>'
+    detail += '<p><strong>Year:</strong> ' + vehicleData.inv_year + '</p>'
+    detail += '<p><strong>Description:</strong> ' + vehicleData.inv_description + '</p>'
+    detail += '<p><strong>Color:</strong> ' + vehicleData.inv_color + '</p>'
+    detail += '<p><strong>Miles:</strong> ' + new Intl.NumberFormat('en-US').format(vehicleData.inv_miles) + '</p>'
+    detail += '</li>'
+    detail += '</ul>'
+  } else {
+    detail += '<p class="notice">Sorry, no matching vehicle found.</p>'
+  }
+
+  console.log(vehicleData);
+  return detail
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
