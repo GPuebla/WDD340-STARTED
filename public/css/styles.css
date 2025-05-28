@@ -279,6 +279,69 @@ footer {
   color: white;
 }
 
+/**CSS DETAILS**/
+
+.vehicle-detail {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.vehicle-card {
+  max-width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.vehicle-info {
+  padding: 1.5rem;
+}
+
+.vehicle-title {
+  margin: 0 0 1rem;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  font-family: var(--font-2);
+}
+
+.vehicle-price {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.vehicle-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vehicle-specs li {
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-specs li strong {
+  color: var(--primary-color);
+}
+
+.notice {
+  text-align: center;
+  padding: 2rem;
+  color: red;
+  font-weight: bold;
+}
 
 @media only screen and (min-width: 600px) {
   body {
