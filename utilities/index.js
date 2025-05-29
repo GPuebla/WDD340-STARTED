@@ -6,7 +6,7 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  let list = "<ul>"
+  let list = '<ul id="nav-list">'
   list += '<li><a href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
     list += "<li>"
@@ -61,29 +61,33 @@ Util.buildClassificationGrid = async function(data){
 /* **************************************
 * Build the Inventory Details view HTML
 * ************************************ */
-Util.buildInventoryDetailGrid = async function(vehicleData){
-  let detail = ""
-
+Util.buildInventoryDetailGrid = async function(vehicleData) {
+  let detail = "";
 
   if (vehicleData) {
-    detail += '<ul id="inv-display">'
-    detail += '<li>'
-    detail += '<img src="' + vehicleData.inv_image + '" alt="Image of ' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '" />'
-    detail += '<h2>' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '</h2>'
-    detail += '<p><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(vehicleData.inv_price) + '</p>'
-    detail += '<p><strong>Year:</strong> ' + vehicleData.inv_year + '</p>'
-    detail += '<p><strong>Description:</strong> ' + vehicleData.inv_description + '</p>'
-    detail += '<p><strong>Color:</strong> ' + vehicleData.inv_color + '</p>'
-    detail += '<p><strong>Miles:</strong> ' + new Intl.NumberFormat('en-US').format(vehicleData.inv_miles) + '</p>'
-    detail += '</li>'
-    detail += '</ul>'
+    detail += `
+      <section class="vehicle-detail">
+        <div class="vehicle-card">
+          <img class="vehicle-image" src="${vehicleData.inv_image}" alt="Image of ${vehicleData.inv_make} ${vehicleData.inv_model}" />
+          <div class="vehicle-info">
+            <h2 class="vehicle-title">${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}</h2>
+            <p class="vehicle-price"><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicleData.inv_price)}</p>
+            <ul class="vehicle-specs">
+              <li><strong>Color:</strong> ${vehicleData.inv_color}</li>
+              <li><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicleData.inv_miles)} miles</li>
+              <li><strong>Description:</strong> ${vehicleData.inv_description}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    `;
   } else {
-    detail += '<p class="notice">Sorry, no matching vehicle found.</p>'
+    detail += `<p class="notice">Sorry, no matching vehicle found.</p>`;
   }
 
   console.log(vehicleData);
-  return detail
-}
+  return detail;
+};
 
 
 /* ****************************************
