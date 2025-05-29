@@ -1,10 +1,10 @@
 // Needed Resources 
 const express = require("express")
 const router = new express.Router() 
-const errorController = require("../controllers/errorController")
+const buildError = require("../controllers/errorController")
 
 // Route to create an intentional error
-router.get("/error", errorController.buildError);
+router.get("/error", buildError);
 
 
 module.exports = router;
