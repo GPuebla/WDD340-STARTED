@@ -14,7 +14,7 @@ const baseController = require("./controllers/baseController")
 const accountCont = require("./controllers/accountController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
-const errorRoute = require("./routes/accountRoute")
+const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
@@ -59,8 +59,12 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Index route 
-app.get("/account", utilities.handleErrors(accountCont.createAccount))
+// Account routes
+app.use("/account", accountRoute)
+
+// Route to build login view
+router.get("/login", utilities.handleErrors(accountCont.buildLogin))
+
 
 // Error routes
 app.use("/", errorRoute)
