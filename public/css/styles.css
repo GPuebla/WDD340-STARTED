@@ -350,6 +350,48 @@ footer {
   font-weight: bold;
 }
 
+/********************Login form********************/
+
+.login-container {
+  background-color: #2b3e50; /* fondo del formulario */
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  color: white;
+  text-align: left;
+  width: 300px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  color: #2b3e50;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container .signup-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-container a {
+  color: white;
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 600px) {
   body {
     background-image: url("/images/site/small_check.jpg");
