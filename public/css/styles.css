@@ -441,7 +441,9 @@ footer {
     grid-template-rows: 270px;
   }
 
-  .main-section section {}
+  .main-section section {
+    
+  }
 
   .main-section #reviews {
     grid-column: 2;
