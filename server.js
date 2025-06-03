@@ -62,10 +62,6 @@ app.use("/inv", inventoryRoute)
 // Account routes
 app.use("/account", accountRoute)
 
-// Route to build login view
-router.get("/login", utilities.handleErrors(accountCont.buildLogin))
-
-
 // Error routes
 app.use("/", errorRoute)
 

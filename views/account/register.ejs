@@ -1,0 +1,32 @@
+<!-- The Content Heading -->
+ 
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } %>
+
+<!-- Message Block -->
+
+<%# messages() %>
+
+<!-- Login Form -->
+
+<div class="form-container">
+  <form action="/login" method="POST">
+
+    <label for="fname">First Name:</label><br>
+    <input type="text" id="fname" name="fname" required><br><br>
+
+    <label for="lname">Last Name:</label><br>
+    <input type="text" id="lname" name="lname" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="account_email" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="account_password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])[\s\S]{12,}$"
+      title="Password must be at least 12 characters long, with at least 1 capital letter, 1 number, and 1 special character"><br><br>
+
+    <button type="submit">REGISTER</button><br><br>
+
+  </form>
+</div>

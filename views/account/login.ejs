@@ -10,7 +10,8 @@
 
 <!-- Login Form -->
 
-<form action="/login" method="POST">
+<div class="form-container">
+  <form action="/login" method="POST">
 
     <label for="email">Email:</label><br>
     <input type="text" id="email" name="account_email" required><br><br>
@@ -20,5 +21,7 @@
 
     <button type="submit">LOGIN</button><br><br>
 
-    <p>No account? <a href="/signup">Sign-up</a></p>
-</form>
+    <p>No account? <a href="/account/register">Sign-up</a></p>
+  </form>
+</div>
+

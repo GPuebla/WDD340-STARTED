@@ -131,7 +131,7 @@ nav ul li a {
 
 .hero-section #span-text {
   position: absolute;
-  top: 40px;
+  top: 160px;
   left: 20px;
   width: 135px;
   height: 112px;
@@ -176,7 +176,7 @@ nav ul li a {
   position: absolute;
   background-color: var(--background-color);
   opacity: .5;
-  top: 40px;
+  top: 160px;
   left: 20px;
   width: 135px;
   height: 125px;
@@ -344,7 +344,7 @@ footer {
 }
 
 .notice {
-  text-align: center;
+  text-align: start;
   padding: 2rem;
   color: red;
   font-weight: bold;
@@ -352,18 +352,19 @@ footer {
 
 /********************Login form********************/
 
-.login-container {
-  background-color: #2b3e50; /* fondo del formulario */
+.form-container {
+  background-color: #2b3e50;
   padding: 30px 40px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   color: white;
   text-align: left;
   width: 300px;
+  margin: 0 auto;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.form-container input[type="text"],
+.form-container input[type="password"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0 20px;
@@ -371,7 +372,7 @@ footer {
   border-radius: 5px;
 }
 
-.login-container button {
+.form-container button {
   width: 100%;
   padding: 10px;
   border: none;
@@ -382,12 +383,12 @@ footer {
   cursor: pointer;
 }
 
-.login-container .signup-link {
+.form-container .signup-link {
   text-align: center;
   margin-top: 15px;
 }
 
-.login-container a {
+.form-container a {
   color: white;
   text-decoration: underline;
 }
@@ -422,7 +423,10 @@ footer {
     display: none;
     flex-direction: column;
     background-color: var(--header-background);
+    margin: 0;
+    padding: 0;
   }
+
 
   #nav-list.show {
     display: flex;
@@ -435,7 +439,7 @@ footer {
   p,
   li,
   a {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 
   .main-container {
@@ -451,7 +455,7 @@ footer {
   }
 
   .hero-section #span-text {
-    top: 20%;
+    top: 40%;
     left: 10%;
     width: 25%;
     height: 40%;
@@ -470,7 +474,7 @@ footer {
   }
 
   #overlay {
-    top: 20%;
+    top: 40%;
     left: 10%;
     width: 25%;
     height: 40%;
@@ -483,9 +487,7 @@ footer {
     grid-template-rows: 270px;
   }
 
-  .main-section section {
-    
-  }
+  .main-section section {}
 
   .main-section #reviews {
     grid-column: 2;

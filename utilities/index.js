@@ -90,6 +90,7 @@ Util.buildInventoryDetailGrid = async function(vehicleData) {
 };
 
 
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
