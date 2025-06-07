@@ -364,6 +364,7 @@ footer {
 }
 
 .form-container input[type="text"],
+.form-container input[type="email"],
 .form-container input[type="password"] {
   width: 100%;
   padding: 10px;
@@ -381,6 +382,7 @@ footer {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 30px;
 }
 
 .form-container .signup-link {
@@ -391,6 +393,14 @@ footer {
 .form-container a {
   color: white;
   text-decoration: underline;
+}
+
+.form-container span {
+  position: relative;
+  color: var(--primary-color);
+  font-size: .94em;
+  bottom: 15px;
+
 }
 
 @media only screen and (min-width: 600px) {
