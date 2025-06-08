@@ -44,4 +44,33 @@ invCont.buildDetailByInvId  = async function (req, res, next) {
 }
 
 
+
+/* ***************************
+ *  Build inventory managment view
+ * ************************** */
+
+invCont.biuldManagement  = async function (req, res, next) {
+  res.render("./inventory/management", {
+  title: "Vehicle Management",
+  nav,
+  errors: null,
+  })
+}
+
+/* ***************************
+ *  Add a new classification
+ * ************************** */
+
+invCont.addClassification = async function (req, res, next) {
+  
+}
+
+/* ***************************
+ *  Add a new inventory
+ * ************************** */
+
+invCont.addInventory  = async function (req, res, next) {
+  
+}
+
 module.exports = invCont

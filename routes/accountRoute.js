@@ -13,9 +13,10 @@ router.get("/login", utilities.handleErrors(accountCont.buildLogin))
 router.get("/register", utilities.handleErrors(accountCont.buildRegister))
 
 // Process the registration data
+console.log("🧪 accountCont:", accountCont)
 router.post(
   "/register",
-  regValidate.registationRules(),
+  regValidate.registrationRules(),
   regValidate.checkRegData,
   utilities.handleErrors(accountCont.registerAccount)
 )
@@ -23,6 +24,8 @@ router.post(
 // Process the login attempt
 router.post(
   "/login",
+  regValidate.loginRules(),
+  regValidate.checkLogData,
   (req, res) => {
     res.status(200).send('login process')
   }

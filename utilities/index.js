@@ -89,6 +89,17 @@ Util.buildInventoryDetailGrid = async function(vehicleData) {
   return detail;
 };
 
+/* ************************
+ * Build the inventory management view HTML
+ ************************** */
+Util.getLinks = async function (req, res, next) {
+  let list = '<ul id="nav-managementLinks">'
+  list += '<li><a href="/" title="Home page">Home</a></li>'
+  list += '<li><a href="/" title="Home page">Home</a></li>'
+  list += "</ul>"
+return links
+}
+
 
 
 /* ****************************************
