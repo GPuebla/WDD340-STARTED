@@ -10,7 +10,15 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:InvId", invController.buildDetailByInvId);
 
 // Route to add a new inventory
-router.get("/", invController.biuldManagement);
+// router.get("/", invController.biuldManagement);
+
+router.get("/ok", (req, res) => {
+  res.render("inventory/management", {
+    title: "Inventory Management",
+    message: req.flash("message"), // opcional, si usás connect-flash
+    errors:null,
+  })
+})
 
 // Route to add a new inventory
 router.get("/addInventory", invController.addInventory);
