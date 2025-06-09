@@ -26,8 +26,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
 
 invCont.buildDetailByInvId  = async function (req, res, next) {
   const inv_id = req.params.InvId
-    
-  console.log('I got the '+inv_id+ " Id")
 
   const data = await invModel.getInventoryByInvId(inv_id)
 
@@ -50,6 +48,8 @@ invCont.buildDetailByInvId  = async function (req, res, next) {
  * ************************** */
 
 invCont.biuldManagement  = async function (req, res, next) {
+  let nav = await utilities.getNav()
+
   res.render("./inventory/management", {
   title: "Vehicle Management",
   nav,
@@ -66,11 +66,21 @@ invCont.addClassification = async function (req, res, next) {
 }
 
 /* ***************************
- *  Add a new inventory
+ *  Add a new vehicle
  * ************************** */
 
-invCont.addInventory  = async function (req, res, next) {
-  
+invCont.addVehicle  = async function (req, res, next) {
+  let nav = await utilities.getNav()
+
+  const result = await invModel.getClassifications()
+  const clasificaciones = result.rows
+
+    res.render("inventory/addVehicle", {
+      title: "Add new vehicle",
+      errors: null,
+      nav,
+      clasificaciones
+    })
 }
 
 module.exports = invCont

@@ -6,30 +6,16 @@ const accountCont = {}
 /* **************
 *  Deliver login view
 * ************* */
-// accountCont.buildLogin = async function (req, res, next) {
-//     let nav = await utilities.getNav()
-//     res.render("account/login", {
-//       title: "Login",
-//       nav,
-//       errors: null,
-//     })
-// }
-
 accountCont.buildLogin = async function (req, res, next) {
   try {
-    console.log("🔍 Entrando a buildLogin...")
-
     let nav = await utilities.getNav()
-    console.log("✅ Nav generado correctamente")
-
     res.render("account/login", {
       title: "Login",
       nav,
       errors:null,
     })
   } catch (error) {
-    console.error("❌ Error en buildLogin:", error)
-    next(error)  // Esto permite que handleErrors() lo capture
+        next(error)  
   }
 }
 
