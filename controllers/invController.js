@@ -62,7 +62,13 @@ invCont.biuldManagement  = async function (req, res, next) {
  * ************************** */
 
 invCont.addClassification = async function (req, res, next) {
-  
+  let nav = await utilities.getNav()
+
+    res.render("inventory/addClassification", {
+      title: "Add new classification",
+      errors: null,
+      nav,
+    })
 }
 
 /* ***************************
