@@ -144,6 +144,84 @@ validate.checkRegData = async (req, res, next) => {
   next()
 }
 
+/* **********************************
+ * Vehicle Data Validation Rules
+ * ********************************* */
+validate.addVehicleRules = () => {
+  return [
+    body("inv_make")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Make is required.")
+      .isAlpha("en-US", { ignore: " " })
+      .withMessage("Make must contain only letters."),
+
+    body("inv_model")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Model is required.")
+      .isAlphanumeric("en-US", { ignore: " " })
+      .withMessage("Model must be alphanumeric."),
+
+    body("inv_year")
+      .trim()
+      .notEmpty()
+      .withMessage("Year is required.")
+      .isInt({ min: 1900, max: new Date().getFullYear() + 1 })
+      .withMessage("Enter a valid year."),
+
+    body("inv_description")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Description is required.")
+      .isLength({ min: 10 })
+      .withMessage("Description must be at least 10 characters."),
+
+    body("inv_image")
+      .trim()
+      .notEmpty()
+      .withMessage("Image URL is required.")
+      .isURL()
+      .withMessage("Please enter a valid image URL."),
+
+    body("inv_thumbnail")
+      .trim()
+      .notEmpty()
+      .withMessage("Thumbnail URL is required.")
+      .isURL()
+      .withMessage("Please enter a valid thumbnail URL."),
+
+    body("inv_price")
+      .notEmpty()
+      .withMessage("Price is required.")
+      .isFloat({ min: 0 })
+      .withMessage("Price must be a positive number."),
+
+    body("inv_miles")
+      .notEmpty()
+      .withMessage("Miles is required.")
+      .isInt({ min: 0 })
+      .withMessage("Miles must be a positive integer."),
+
+    body("inv_color")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Color is required.")
+      .isAlpha("en-US", { ignore: " " })
+      .withMessage("Color must contain only letters."),
+
+    body("classification_id")
+      .notEmpty()
+      .withMessage("Classification is required.")
+      .isInt()
+      .withMessage("Invalid classification ID."),
+  ]
+}
+
 module.exports = validate;
 
 
