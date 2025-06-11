@@ -20,14 +20,12 @@
 <div class="form-container">
     <form id="classificationForm" action="/inv/addClassification" method="POST">
         <p><em>Field is required.</em></p>
-        <fieldset>
         <legend>Classification Name</legend>
         <label for="classification_name">Name</label>
         <input type="text" id="classification_name" name="classification_name" required
                 pattern="^[A-Za-z\s]+$"
                 title="Name must contain only alphabetic characters and spaces.">
         <small>Name must be alphabetic characters only.</small>
-        </fieldset>
         <br>
         <input type="submit" value="Add Classification">
     </form>
