@@ -13,17 +13,14 @@ router.get("/detail/:InvId", invController.buildDetailByInvId);
 router.get("/", invController.biuldManagement);
 
 // Route to the addVehicle form
-router.get("/addVehicle", invController.addVehicle);
+router.get("/addVehicle", invController.addVehicleForm);
 
 // Route to the addClassification form
-router.get("/addClassification", invController.addClassification);
+router.get("/addClassification", invController.addClassificationForm);
 
 
 // Route to add a new vehicle
-router.post("/addVheicle", async (req, res) => {
-  const data = req.body
-  res.send("Vehicle Added")
-})
+router.post("/addVehicle", invController.addVehicle)
 
 
 module.exports = router;

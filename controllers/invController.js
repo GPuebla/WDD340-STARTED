@@ -58,10 +58,10 @@ invCont.biuldManagement  = async function (req, res, next) {
 }
 
 /* ***************************
- *  Add a new classification
+ *  Build form to Add a new classification
  * ************************** */
 
-invCont.addClassification = async function (req, res, next) {
+invCont.addClassificationForm = async function (req, res, next) {
   let nav = await utilities.getNav()
 
     res.render("inventory/addClassification", {
@@ -72,21 +72,79 @@ invCont.addClassification = async function (req, res, next) {
 }
 
 /* ***************************
- *  Add a new vehicle
+ *  Build form to Add a new vehicle
  * ************************** */
 
-invCont.addVehicle  = async function (req, res, next) {
+invCont.addVehicleForm  = async function (req, res, next) {
   let nav = await utilities.getNav()
 
   const result = await invModel.getClassifications()
-  const clasificaciones = result.rows
+  const classifications = result.rows
 
     res.render("inventory/addVehicle", {
       title: "Add new vehicle",
       errors: null,
       nav,
-      clasificaciones
+      classifications
     })
 }
+
+
+
+/* ****************************************
+*  Process to Add Vehicle
+* *************************************** */
+invCont.addVehicle = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { 
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id} = req.body
+
+  const classificationId = Number(await invModel.getClassificationId(classification_id));
+
+  const regResult = await invModel.addVehicle(
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classificationId
+  )
+
+  console.log("BODY:", req.body)
+  console.log(regResult);
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'re added ${inv_make} ${inv_model} successfully.`
+    )
+    res.status(201).render("inventory/addVehicle", {
+      title: "Adding Vehicle Successfully",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the process failed.")
+    res.status(501).render("inventory/addVehicle", {
+      title: "Adding Vehicle Error",
+      nav,
+      errors: null,
+    })
+  }
+}
+
 
 module.exports = invCont

@@ -67,7 +67,7 @@
     <label for="classification_id">Classification:</label><br>
     <select id="classification_id" name="classification_id" required>
       <option value="" disabled selected hidden>-- Select a classification --</option>
-      <% clasificaciones.forEach(cl => { %>
+      <% classifications.forEach(cl => { %>
         <option value="<%= cl.classification_id %>"><%= cl.classification_name %></option>
       <% }) %>
     </select><br><br>
