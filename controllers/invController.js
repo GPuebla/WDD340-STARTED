@@ -131,8 +131,11 @@ invCont.addVehicle = async function (req, res) {
       "notice",
       `Congratulations, you\'re added ${inv_make} ${inv_model} successfully.`
     )
-    res.status(201).render("inventory/addVehicle", {
-      title: "Adding Vehicle Successfully",
+
+    let nav = await utilities.getNav()
+
+    res.status(201).render("/inventory/management", {
+      title: "Vehicle Management",
       nav,
       errors: null,
     })
