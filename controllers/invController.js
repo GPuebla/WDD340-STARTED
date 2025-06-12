@@ -140,11 +140,16 @@ invCont.addVehicle = async function (req, res) {
       errors: null,
     })
   } else {
+    
+    const result = await invModel.getClassifications()
+    const classifications = result.rows
+
     req.flash("notice", "Sorry, the process failed.")
     res.status(501).render("inventory/addVehicle", {
-      title: "Adding Vehicle Error",
-      nav,
+      title: "Add new vehicle",
       errors: null,
+      nav,
+      classifications
     })
   }
 }
