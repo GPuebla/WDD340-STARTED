@@ -14,7 +14,7 @@ async function getClassificationId(classification_name) {
     `SELECT classification_id FROM public.classification WHERE classification_name = $1`,
     [classification_name]
   );
-  return result.rows[0];
+  return result?.rows?.[0]?.classification_id
 }
 
 
@@ -73,5 +73,17 @@ async function addVehicle(inv_make,
   }
 }
 
+/* *****************************
+*   Adding new vehicle
+* *************************** */
+async function addClassification(classification_name){
+  try {
+    const sql = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *"
+    return await pool.query(sql, [classification_name])
+  } catch (error) {
+    return error.message
+  }
+}
 
-module.exports = {getClassifications, getClassificationId, getInventoryByClassificationId, getInventoryByInvId, addVehicle};
+
+module.exports = {getClassifications, getClassificationId, getInventoryByClassificationId, getInventoryByInvId, addVehicle, addClassification};

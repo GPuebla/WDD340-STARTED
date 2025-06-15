@@ -95,56 +95,108 @@ invCont.addVehicleForm  = async function (req, res, next) {
 *  Process to Add Vehicle
 * *************************************** */
 invCont.addVehicle = async function (req, res) {
-  let nav = await utilities.getNav()
-  const { 
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_miles,
-    inv_color,
-    classification_id} = req.body
+  try {
+    let nav = await utilities.getNav()
+    const { 
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id 
+    } = req.body
 
-  const classificationId = Number(await invModel.getClassificationId(classification_id));
-
-  const regResult = await invModel.addVehicle(
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_miles,
-    inv_color,
-    classificationId
-  )
-
-  console.log("BODY:", req.body)
-  console.log(regResult);
-
-  if (regResult) {
-    req.flash(
-      "notice",
-      `Congratulations, you\'re added ${inv_make} ${inv_model} successfully.`
+    const regResult = await invModel.addVehicle(
+      inv_make,
+      inv_model,
+      Number(inv_year),
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      Number(inv_price),
+      Number(inv_miles),
+      inv_color,
+      Number(classification_id)
     )
-    res.status(201).render("inventory/addVehicle", {
-      title: "Adding Vehicle Successfully",
-      nav,
-      errors: null,
-    })
-  } else {
+
+    const classifications = (await invModel.getClassifications()).rows
+
+    if (regResult) {
+      req.flash("notice", `Congratulations, you added ${inv_make} ${inv_model} successfully.`)
+      res.status(201).render("inventory/addVehicle", {
+        title: "Adding Vehicle Successfully",
+        nav,
+        errors: null,
+        classifications
+      })
+    } else {
+      req.flash("notice", "Sorry, the process failed.")
+      res.status(501).render("inventory/addVehicle", {
+        title: "Adding Vehicle Error",
+        nav,
+        errors: null,
+        classifications
+      })
+    }
+  } catch (error) {
+    console.error("Error in addVehicle:", error.message)
+    const nav = await utilities.getNav()
+    const classifications = (await invModel.getClassifications()).rows
     req.flash("notice", "Sorry, the process failed.")
-    res.status(501).render("inventory/addVehicle", {
+    res.status(500).render("inventory/addVehicle", {
       title: "Adding Vehicle Error",
       nav,
-      errors: null,
+      errors: [error.message],
+      classifications
     })
   }
 }
 
+/* ****************************************
+*  Process to Add Classification
+* *************************************** */
+invCont.addClassfication = async function (req, res) {
+  try {
+    let nav = await utilities.getNav()
+    const { classification_name } = req.body
+
+    const regResult = await invModel.addClassification(classification_name)
+
+    const classifications = (await invModel.getClassifications()).rows
+
+    if (regResult) {
+      req.flash("notice", `Congratulations, you added the ${classification_name} category successfully.`)
+      res.status(201).render("inventory/addClassification", {
+        title: "Classification  Successfully",
+        nav,
+        errors: null,
+        classifications
+      })
+    } else {
+      req.flash("notice", "Sorry, the process failed.")
+      res.status(501).render("inventory/addClassification", {
+        title: "Adding Vehicle Error",
+        nav,
+        errors: null,
+        classifications
+      })
+    }
+  } catch (error) {
+    console.error("Error in addClassification:", error.message)
+    const nav = await utilities.getNav()
+    const classifications = (await invModel.getClassifications()).rows
+    req.flash("notice", "Sorry, the process failed.")
+    res.status(500).render("inventory/addClassification", {
+      title: "Adding Vehicle Error",
+      nav,
+      errors: [error.message],
+      classifications
+    })
+  }
+}
 
 module.exports = invCont
