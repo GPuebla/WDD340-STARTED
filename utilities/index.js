@@ -30,6 +30,7 @@ Util.getNav = async function (req, res, next) {
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
   let grid
+  console.log(data.length)
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
@@ -85,7 +86,6 @@ Util.buildInventoryDetailGrid = async function(vehicleData) {
     detail += `<p class="notice">Sorry, no matching vehicle found.</p>`;
   }
 
-  console.log(vehicleData);
   return detail;
 };
 

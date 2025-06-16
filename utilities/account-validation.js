@@ -2,6 +2,7 @@ const utilities = require(".")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const accountModel = require("../models/account-model")
+const invModel = require("../models/inventory-model")
 
 /*  **********************************
   *  Login Data Validation Rules
@@ -83,28 +84,6 @@ const accountModel = require("../models/account-model")
     ]
   }
 
-/* **********
-  * Check data and return errors or continue to login
-  * *********** */
-  // validate.checkLogData = async (req, res, next) => {
-  //   const { account_email } = req.body
-  //   let errors = []
-
-
-  // errors = validationResult(req)
-  //   if (!errors.isEmpty()) {
-  //     let nav = await utilities.getNav()
-  //     console.log(account_email);
-  //     res.render("account/login", {
-  //       errors,
-  //       title: "Login",
-  //       nav,
-  //       account_email,
-  //     })
-  //     return
-  //   }
-  //   next()
-  // }
 
   validate.checkLogData = async (req, res, next) => {
     const errors = validationResult(req)
@@ -221,6 +200,55 @@ validate.addVehicleRules = () => {
       .withMessage("Invalid classification ID."),
   ]
 }
+
+  /* ******************************
+ * Check data and return errors or continue to add new car
+ * ***************************** */
+
+validate.checkVehicleData = async (req, res, next) => {
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+  } = req.body
+
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav()
+    const classifications = (await invModel.getClassifications()).rows
+
+    res.render("inventory/add-inventory", {
+      title: "Add New Vehicle",
+      nav,
+      errors,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+      classifications
+    })
+    return
+  }
+
+  next()
+}
+
+
+
 
 module.exports = validate;
 

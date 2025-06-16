@@ -74,7 +74,7 @@ async function addVehicle(inv_make,
 }
 
 /* *****************************
-*   Adding new vehicle
+*   Adding new classification
 * *************************** */
 async function addClassification(classification_name){
   try {

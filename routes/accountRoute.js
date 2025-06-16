@@ -13,7 +13,6 @@ router.get("/login", utilities.handleErrors(accountCont.buildLogin))
 router.get("/register", utilities.handleErrors(accountCont.buildRegister))
 
 // Process the registration data
-console.log("🧪 accountCont:", accountCont)
 router.post(
   "/register",
   regValidate.registrationRules(),

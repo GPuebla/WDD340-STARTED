@@ -9,9 +9,12 @@ const invCont = {}
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
   const data = await invModel.getInventoryByClassificationId(classification_id)
+  console.log(data);
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
-  const className = data[0].classification_name
+  
+  const className = data.length > 0 ? data[0].classification_name : "No"
+
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
@@ -19,6 +22,8 @@ invCont.buildByClassificationId = async function (req, res, next) {
     errors: null,
   })
 }
+
+
 
 /* ***************************
  *  Build inventory detaill by inventory Id view
@@ -159,7 +164,7 @@ invCont.addVehicle = async function (req, res) {
 /* ****************************************
 *  Process to Add Classification
 * *************************************** */
-invCont.addClassfication = async function (req, res) {
+invCont.addClassification = async function (req, res) {
   try {
     let nav = await utilities.getNav()
     const { classification_name } = req.body
@@ -171,7 +176,7 @@ invCont.addClassfication = async function (req, res) {
     if (regResult) {
       req.flash("notice", `Congratulations, you added the ${classification_name} category successfully.`)
       res.status(201).render("inventory/addClassification", {
-        title: "Classification  Successfully",
+        title: "Classification Added Successfully",
         nav,
         errors: null,
         classifications
@@ -179,7 +184,7 @@ invCont.addClassfication = async function (req, res) {
     } else {
       req.flash("notice", "Sorry, the process failed.")
       res.status(501).render("inventory/addClassification", {
-        title: "Adding Vehicle Error",
+        title: "Adding Classification Error",
         nav,
         errors: null,
         classifications
@@ -191,7 +196,7 @@ invCont.addClassfication = async function (req, res) {
     const classifications = (await invModel.getClassifications()).rows
     req.flash("notice", "Sorry, the process failed.")
     res.status(500).render("inventory/addClassification", {
-      title: "Adding Vehicle Error",
+      title: "Adding Classification Error",
       nav,
       errors: [error.message],
       classifications
