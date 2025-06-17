@@ -6,6 +6,10 @@ const router = new express.Router()
 const accountCont = require("../controllers/accountController")
 
 
+// Route to build an account
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountCont.buildAccount))
+
+
 // Route to build login view
 router.get("/login", utilities.handleErrors(accountCont.buildLogin))
 
@@ -20,14 +24,12 @@ router.post(
   utilities.handleErrors(accountCont.registerAccount)
 )
 
-// Process the login attempt
+// Process the login request
 router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLogData,
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  utilities.handleErrors(accountCont.accountLogin)
 )
 
 module.exports = router;

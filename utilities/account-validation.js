@@ -84,6 +84,9 @@ const invModel = require("../models/inventory-model")
     ]
   }
 
+  /*  **********************************
+  *   Check data and return errors or continue to login
+  * ********************************* */
 
   validate.checkLogData = async (req, res, next) => {
     const errors = validationResult(req)
