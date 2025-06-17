@@ -40,7 +40,23 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
  * Method: GET
  ********************************/
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
-
 router.post("/update/", invController.updateInventory)
+
+
+/* ***************************
+ *  Delete Inventory Item Route
+ * ************************** */
+
+/* ****************************************
+ *  Route to deliver the delete confirmation view
+ *  Shows vehicle details and asks the user to confirm deletion
+ **************************************** */
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteView));
+
+/* ****************************************
+ *  Route to process the deletion of a vehicle
+ *  Deletes the vehicle from the database after user confirmation
+ **************************************** */
+router.post("/delete", utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;
