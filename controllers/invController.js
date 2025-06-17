@@ -317,7 +317,7 @@ invCont.updateInventory = async function (req, res, next) {
  *  Deliver Delete Confirmation View
  * ************************** */
 
-invController.deleteView = async function (req, res) {
+invCont.deleteView = async function (req, res) {
   const inv_id = parseInt(req.params.inv_id);
   const itemData = await invModel.getInventoryById(inv_id);
   const nav = await utilities.getNav();
@@ -332,7 +332,7 @@ invController.deleteView = async function (req, res) {
  *  Delete Vehicle Data
  * ************************** */
 
-invController.deleteInventory = async function (req, res) {
+invCont.deleteInventory = async function (req, res) {
   const inv_id = parseInt(req.body.inv_id);
   const result = await invModel.deleteInventoryItem(inv_id);
   const nav = await utilities.getNav();
