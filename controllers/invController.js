@@ -321,6 +321,9 @@ invCont.deleteView = async function (req, res) {
   const inv_id = parseInt(req.params.inv_id);
   const itemData = await invModel.getInventoryById(inv_id);
   const nav = await utilities.getNav();
+
+  console.log("Car to delete:",itemData);
+
   res.render("inventory/delete-confirm", {
     title: "Delete " + itemData.inv_make + " " + itemData.inv_model,
     nav,
