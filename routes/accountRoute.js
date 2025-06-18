@@ -29,7 +29,7 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLogData,
-  utilities.handleErrors(accountCont.accountLogin)
+  utilities.handleErrors(accountCont.accountLogin),
 )
 
 module.exports = router;
