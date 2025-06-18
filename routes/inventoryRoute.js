@@ -53,6 +53,7 @@ router.post("/update/", invController.updateInventory)
  **************************************** */
 router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteView));
 
+
 /* ****************************************
  *  Route to process the deletion of a vehicle
  *  Deletes the vehicle from the database after user confirmation

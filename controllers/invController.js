@@ -319,15 +319,16 @@ invCont.updateInventory = async function (req, res, next) {
 
 invCont.deleteView = async function (req, res) {
   const inv_id = parseInt(req.params.inv_id);
-  const itemData = await invModel.getInventoryById(inv_id);
+  const itemData = await invModel.getInventoryByInvId(inv_id);
   const nav = await utilities.getNav();
 
-  console.log("Car to delete:",itemData);
+  console.log('Car to delete:',itemData);
 
   res.render("inventory/delete-confirm", {
     title: "Delete " + itemData.inv_make + " " + itemData.inv_model,
     nav,
     item: itemData,
+    errors: null,
   });
 };
 
@@ -349,4 +350,4 @@ invCont.deleteInventory = async function (req, res) {
   }
 };
 
-module.exports = invCont
+module.exports = invCont;
